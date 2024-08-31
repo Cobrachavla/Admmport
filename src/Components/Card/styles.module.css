@@ -6,7 +6,7 @@
   sm:w-1/2
   md:w-1/2
   xl:w-1/4
-  p-4
+  p-2
 }
 
 .cardLink {
@@ -27,7 +27,7 @@
 .cardHeader {
   @apply 
   relative 
-  pb-64 
+  pb-24 
   overflow-hidden
   shadow-sm
 }
@@ -62,11 +62,11 @@
   @apply 
   absolute 
   inset-0
-  max-h-56
+  max-h-40
   w-full 
   object-contain
-  my-4
-  px-4
+  my-2
+  px-2
 }
 
 .cardLink img {
@@ -97,7 +97,7 @@
 .cardBody .brand, .cardTitle {
   @apply
   mt-1
-  mb-2
+  mb-1
 }
 
 .brand {
@@ -212,9 +212,3 @@
   @apply 
   font-bold
 }
-
-/***** ADD TO CART BUTTON STYLES END *****/
-
-/***** CARD BODY STYLES END *****/
-
-/***** CARD STYLES END *****/

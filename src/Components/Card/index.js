@@ -1,6 +1,6 @@
-import styles from './styles.module.css'
-import { StarIcon, ShoppingCartIcon, HeartIcon } from '@heroicons/react/solid'
-import { Link } from 'react-router-dom'
+import styles from './styles.module.css';
+import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/solid';
+import { Link } from 'react-router-dom';
 
 const Card = ({
   item,
@@ -9,60 +9,42 @@ const Card = ({
   addToCart,
   findCartItem,
 }) => {
-
   return (
-    <div key={`${item.id}-item`} className={styles.card} title={item.title}>
+    <div key={`${item.id}-item`} className={styles.card} title={item.title} style={{ width: '200px', padding: '10px' }}>
       <div className={styles.cardLink}>
         <button
           className={
             !findFavoriteItem ? styles.favButton : styles.removeFavButton
           }
           onClick={() => {
-            addToFavorite(item, findFavoriteItem)
+            addToFavorite(item, findFavoriteItem);
           }}
         >
-          <HeartIcon className={styles.heartIcon} />
         </button>
         <Link to={`/product/${item.id}`}>
           <div className={styles.cardHeader}>
-            <img className={styles.cardImg} src={item.image} alt="" />
+            {/* Image has been removed */}
           </div>
         </Link>
         <div className={styles.cardBody}>
           <div>
             <p className={styles.cardTitle} title={item.title}>
               <span className={styles.brand} title="Brand">
-                Brand,
+                {item.college},
               </span>{" "}
-              {item.title}
+              {item.branch}
             </p>
           </div>
-          <div className={styles.rating} title={item.rating.rate}>
-            {[...Array(Math.round(item.rating.rate))].map((e, i) => (
-              <StarIcon
-                key={`star-${i}`}
-                className={styles.starIcon}
-                aria-hidden="true"
-              />
-            ))}
-            {[...Array(5 - Math.round(item.rating.rate))].map((e, i) => (
-              <StarIcon
-                key={`empty-star-${i}`}
-                className={styles.emptyStarIcon}
-                aria-hidden="true"
-              />
-            ))}
-            <p className="text-xs ml-1 font-light mt-0.5">
-              ({item.rating.count})
-            </p>
+          <div className={styles.rating} title={item.status}>
+            <p className="text-xs ml-1 font-light mt-0.5">({item.status})</p>
           </div>
           <div>
-            <div className="my-auto" title={`$${item.price}`}>
+            <div className="my-auto" title={`$${item.cost}`}>
               <span className={styles.priceSub}>$</span>
-              <span className={styles.priceTop}>{Math.trunc(item.price)}</span>
-              {parseInt((item.price % 1).toFixed(2).substring(2)) !== 0 ? (
+              <span className={styles.priceTop}>{Math.trunc(item.cost)}</span>
+              {parseInt((item.cost % 1).toFixed(2).substring(2)) !== 0 ? (
                 <span className={styles.priceSub}>
-                  {parseInt((item.price % 1).toFixed(2).substring(2))}
+                  {parseInt((item.cost % 1).toFixed(2).substring(2))}
                 </span>
               ) : (
                 ""
@@ -90,7 +72,7 @@ const Card = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

@@ -1,35 +1,50 @@
-import { useState, useEffect, useRef } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../../Context/AuthContext'
-import styles from './styles.module.css'
-import { LoginIcon } from '@heroicons/react/outline'
+import axios from 'axios';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../Context/AuthContext';
+import styles from './styles.module.css';
+import { LoginIcon } from '@heroicons/react/outline';
 
 const Signin = () => {
+  const { currentUser, login, setCurrentUser, setIsSubmitting, loggedIn } = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const { currentUser, login, setCurrentUser, setIsSubmitting, loggedIn } = useAuth()
-
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-
-  const emailRef = useRef()
-  const passwordRef = useRef()
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
   const handleSignIn = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    try {
-      await login(emailRef.current.value, passwordRef.current.value)
-    } catch {
-      alert("Error!")
-    }
-    setIsSubmitting(false)
-  }
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError('');
 
-  const navigate = useNavigate()
-  
+    try {
+      const response = await axios.post('http://localhost:5000/api/login', {
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      });
+
+      if (response.data.success) {
+        // Assuming `setCurrentUser` is a function that stores user data in the context
+        setCurrentUser(response.data.user);
+        login(response.data.user);
+      } else {
+        setError('Invalid email or password');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('An error occurred during login');
+    }
+
+    setIsSubmitting(false);
+  };
+
+  const navigate = useNavigate();
+
   useEffect(() => {
-    loggedIn && navigate('/')
-  }, [loggedIn])
+    loggedIn && navigate('/');
+  }, [loggedIn]);
 
   return (
     <div className={styles.formGroupContainer}>
@@ -37,11 +52,7 @@ const Signin = () => {
         <div>
           <h2 className={styles.title}>Login</h2>
         </div>
-        <form
-          autoComplete="off"
-          onSubmit={handleSignIn}
-          className={styles.signInForm}
-        >
+        <form autoComplete="off" onSubmit={handleSignIn} className={styles.signInForm}>
           <div className={styles.inputGroup}>
             <div>
               <label className="sr-only">Email</label>
@@ -58,7 +69,7 @@ const Signin = () => {
             <div>
               <label className="sr-only">Password</label>
               <input
-                type="Password"
+                type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
                 required
@@ -67,12 +78,12 @@ const Signin = () => {
                 ref={passwordRef}
               />
             </div>
+            {error && <p className={styles.error}>{error}</p>}
             <div className={styles.linkBox}>
               <div className={styles.linkDiv}>
                 <span>
-                  Don't have an account? Sign up{" "}
+                  Don't have an account? Sign up{' '}
                   <Link to="/signup" className="text-blue-600 hover:underline">
-                    {" "}
                     here.
                   </Link>
                 </span>
@@ -80,7 +91,7 @@ const Signin = () => {
             </div>
             <div className="text-center">
               <button type="submit" className={styles.button}>
-                <LoginIcon className="my-auto h-5 w-6" aria1-hidden="true" />
+                <LoginIcon className="my-auto h-5 w-6" aria-hidden="true" />
                 Login
               </button>
             </div>
@@ -88,7 +99,7 @@ const Signin = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Signin
+export default Signin;

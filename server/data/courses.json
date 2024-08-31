@@ -1,0 +1,249 @@
+[
+  {
+    "id": 1,
+    "title": "Btech",
+    "branch": "ECE",
+    "college": "MIT",
+    "district": "District A",
+    "description": "Description1",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 2,
+    "title": "Btech",
+    "branch": "CIVIL",
+    "college": "MIT",
+    "district": "District B",
+    "description": "Description2",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 3,
+    "title": "Btech",
+    "branch": "MECHANICAL",
+    "college": "MIT",
+    "district": "District C",
+    "description": "Description3",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 4,
+    "title": "Btech",
+    "branch": "CSE",
+    "college": "MIT",
+    "district": "District D",
+    "description": "Description4",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 5,
+    "title": "Btech",
+    "branch": "ELECTRICAL",
+    "college": "MIT",
+    "district": "District A",
+    "description": "Description5",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 6,
+    "title": "Mtech",
+    "branch": "IT",
+    "college": "MIT",
+    "district": "District B",
+    "description": "Description6",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 7,
+    "title": "Mtech",
+    "branch": "AI&DS",
+    "college": "MIT",
+    "district": "District C",
+    "description": "Description7",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 8,
+    "title": "Mtech",
+    "branch": "CHEMICAL",
+    "college": "MIT",
+    "district": "District D",
+    "description": "Description8",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 9,
+    "title": "Mtech",
+    "branch": "BIOTECH",
+    "college": "MIT",
+    "district": "District E",
+    "description": "Description9",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 10,
+    "title": "Btech",
+    "branch": "ECE",
+    "college": "VIT",
+    "district": "District A",
+    "description": "Description10",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 11,
+    "title": "Btech",
+    "branch": "CIVIL",
+    "college": "VIT",
+    "district": "District B",
+    "description": "Description11",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 12,
+    "title": "Btech",
+    "branch": "MECHANICAL",
+    "college": "VIT",
+    "district": "District C",
+    "description": "Description12",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 13,
+    "title": "Btech",
+    "branch": "CSE",
+    "college": "VIT",
+    "district": "District D",
+    "description": "Description13",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 14,
+    "title": "Btech",
+    "branch": "ELECTRICAL",
+    "college": "VIT",
+    "district": "District A",
+    "description": "Description14",
+    "cost": 1200,
+    "status": "verified"
+  },
+  {
+    "id": 15,
+    "title": "Mtech",
+    "branch": "IT",
+    "college": "VIT",
+    "district": "District B",
+    "description": "Description15",
+    "cost": 1200,
+    "status": "unverified"
+  },
+  {
+    "id": 16,
+    "title": "Mtech",
+    "branch": "AI&DS",
+    "college": "VIT",
+    "district": "District C",
+    "description": "Description16",
+    "cost": 1200,
+    "status": "unverified"
+  },
+  {
+    "id": 17,
+    "title": "Mtech",
+    "branch": "CHEMICAL",
+    "college": "VIT",
+    "district": "District D",
+    "description": "Description17",
+    "cost": 1200,
+    "status": "unverified"
+  },
+  {
+    "id": 18,
+    "title": "Mtech",
+    "branch": "BIOTECH",
+    "college": "VIT",
+    "district": "District E",
+    "description": "Description18",
+    "cost": 1200,
+    "status": "unverified"
+  },
+  {
+    "title": "Btech",
+    "description": "Description 19",
+    "branch": "petroleum",
+    "district": "Pune",
+    "cost": "350",
+    "college": "MIT",
+    "status": "unverified",
+    "id": 19
+  },
+  {
+    "title": "Msc",
+    "description": "asas",
+    "branch": "aassq",
+    "district": "aaaaa",
+    "cost": "12",
+    "college": "MIT",
+    "status": "unverified",
+    "id": 20
+  },
+  {
+    "title": "Btech",
+    "description": "asa",
+    "branch": "12",
+    "district": "zxc",
+    "cost": "111",
+    "college": "MIT",
+    "status": null,
+    "id": 21
+  },
+  {
+    "title": "Btech",
+    "description": "dess",
+    "branch": "AIDS",
+    "district": "abc",
+    "cost": "245",
+    "college": "MIT",
+    "status": "unverified",
+    "id": 22
+  },
+  {
+    "title": "Btech",
+    "description": "derf",
+    "branch": "Computer science",
+    "district": "Sangli",
+    "cost": "2390",
+    "status": "verified",
+    "id": 23
+  },
+  {
+    "title": "msc",
+    "description": "hgfytfu",
+    "branch": "chemical",
+    "district": "mumbai",
+    "cost": "1234",
+    "status": "verified",
+    "id": 24
+  },
+  {
+    "title": "B.Sc",
+    "description": "jkbjkblj",
+    "branch": "ECE",
+    "district": "Pune",
+    "cost": "225",
+    "status": "unverified",
+    "id": 25
+  }
+]

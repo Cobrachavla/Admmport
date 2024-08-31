@@ -47,16 +47,90 @@
   overflow-hidden 
   h-full
 }
+.bgCart {
+  background-color: #f9fafb; /* Light grey for a clean look */
+  border-radius: 10px; /* Rounded corners for a softer appearance */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 1.5rem; /* Increased padding for more spacious content */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover transition */
+}
 
-.bgCart { 
-  @apply 
-  block 
-  bg-white 
-  shadow-sm 
-  border-t 
-  border-stone-500/10 
-  shadow-zinc-900/10 
-  rounded-lg 
-  overflow-hidden 
-  h-full
+.bgCart:hover {
+  transform: translateY(-4px); /* Slight lift on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+}
+.buyNowButton {
+  background-color: #4CAF50; /* Green background */
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.buyNowButton:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.dashboardButton {
+  background-color: #008CBA; /* Blue background */
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.dashboardButton:hover {
+  background-color: #007bb5; /* Darker blue on hover */
+}
+
+.courseTitle {
+  @apply text-lg font-semibold text-zinc-900 hover:text-blue-600;
+}
+
+.collegeTitle, .branchTitle, .costTitle {
+  @apply text-sm font-semibold text-zinc-900;
+}
+
+.courseDetail, .collegeDetail, .branchDetail {
+  @apply text-sm font-light text-zinc-700;
+}
+
+.costDetail {
+  @apply text-lg font-semibold text-blue-700 mt-2;
+}
+
+.itemWrapper {
+  @apply mb-4 p-4 rounded-md border border-gray-200 shadow-sm flex flex-col md:flex-row;
+}
+
+.itemImage {
+  @apply w-32 h-32 object-contain rounded-md shadow-sm;
+}
+
+.itemDetails {
+  @apply ml-4 flex flex-col justify-between;
+}
+
+.itemAction {
+  @apply ml-auto flex flex-col justify-between items-end;
+}
+
+.itemRemoveButton {
+  @apply text-red-600 hover:text-red-800;
 }

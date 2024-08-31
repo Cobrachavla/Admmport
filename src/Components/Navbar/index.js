@@ -43,6 +43,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                   <div className={styles.logo}>
+                    
                     <Link className={styles.link} to="/">
                       <div className={styles.logoBox}>
                       <h1 className={styles.logoText}>LOGO</h1>
@@ -65,14 +66,7 @@ const Navbar = () => {
 
             <Disclosure.Panel className={styles.disclosurePanel}>
               <div>
-                {!loggedIn && NAVIGATION.map(({
-                      id,
-                      name,
-                      link,
-                      icon,
-                      underlined,
-                      loggedIn,
-                      onclick,
+                {!loggedIn && NAVIGATION.map(({id,name,link,icon,underlined,loggedIn,onclick,
                     }) => (
                       <Link 
                         to={link}
@@ -131,36 +125,7 @@ const Navbar = () => {
           </>
         )}
       </Disclosure>
-      <div className="bg-zinc-900/10 mx-auto h-[1.1px] shadow-sm shadow-zinc-900/10 px-12"></div>
-      <nav className={styles.categoryNav}>
-        <div>
-          <Link
-            className={styles.categoryLink}
-            to="/"
-            onClick={() => setCategory("")}
-          >
-            <h1 className="truncate">All</h1>
-          </Link>
-        </div>
-        {categories &&
-          categories.map((item, index) => {
-            return (
-              <div key={`${item}-${index}`}>
-                <Link
-                  className={styles.categoryLink}
-                  to={`/${item.toLowerCase()}`}
-                  onClick={() => {
-                    setCategory(item.toLowerCase());
-                  }}
-                >
-                  <h1 className="truncate">{item}</h1>
-                </Link>
-              </div>
-            );
-          })}
-      </nav>
-      <div className="bg-zinc-900/10 mx-auto h-[1px] shadow-sm shadow-zinc-900/10 px-12"></div>
-    </>
+          </>
   );
 };
 

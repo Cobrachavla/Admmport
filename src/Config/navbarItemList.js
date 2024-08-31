@@ -5,6 +5,10 @@ import {
   ClipboardListIcon,
   HeartIcon,
   ShoppingCartIcon,
+  HomeIcon,
+  AcademicCapIcon, 
+  InformationCircleIcon,
+  MailIcon,
 } from '@heroicons/react/outline'
 
 const NAVIGATION = [
@@ -67,6 +71,42 @@ const NAVIGATION = [
     icon: <HeartIcon className="mr-2 my-auto h-5 w-5" aria-hidden="true" />,
     loggedIn: "public",
     underlined: true,
+  },
+  {
+    id: 1,
+    name: 'Home',
+    link: '/',
+    icon: <HomeIcon className="h-5 w-5 mr-2" aria-hidden="true" />,
+    underlined: true,
+    loggedIn: 'public',
+    onclick: null,
+  },
+  {
+    id: 2,
+    name: 'Spotround Admissions',
+    link: '/spotround-admissions',
+    icon: <AcademicCapIcon className="h-5 w-5 mr-2" aria-hidden="true" />,
+    underlined: true,
+    loggedIn: 'public',
+    onclick: null,
+  },
+  {
+    id: 3,
+    name: 'About Us',
+    link: '/about',
+    icon: <InformationCircleIcon className="h-5 w-5 mr-2" aria-hidden="true" />,
+    underlined: true,
+    loggedIn: 'public',
+    onclick: null,
+  },
+  {
+    id: 4,
+    name: 'Contact Us',
+    link: '/contact',
+    icon: <MailIcon className="h-5 w-5 mr-2" aria-hidden="true" />,
+    underlined: true,
+    loggedIn: 'public',
+    onclick: null,
   },
 ]
 

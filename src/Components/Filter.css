@@ -1,0 +1,66 @@
+/* styles.module.css */
+
+.filter {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  #filtercontent, #fixedfilter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #filtercontent label, #fixedfilter button {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  #filtercontent div, #fixedfilter {
+    flex: 1 1 100%; /* Take up full width on small screens */
+    margin: 10px 0;
+  }
+  
+  #fixedfilter {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #fixedfilter button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #fixedfilter button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive design */
+  @media (min-width: 768px) {
+    #filtercontent div {
+      flex: 1 1 calc(50% - 20px); /* 50% width minus margin */
+      margin: 10px;
+    }
+  
+    #fixedfilter {
+      flex-direction: row;
+      gap: 10px;
+      justify-content: flex-start;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    #filtercontent div {
+      flex: 1 1 calc(33.33% - 20px); /* 33.33% width minus margin */
+    }
+  }
+  

@@ -1,60 +1,43 @@
 import axios from 'axios'
 import { createContext, useContext, useEffect, useState } from 'react'
-const ProductContext = createContext()
 
+const ProductContext = createContext()
 
 export const ProductProvider = ({ children }) => {
   const [productList, setProductList] = useState([])
-  const [categories, setCategories] = useState()
+  const [categories, setCategories] = useState([])
   const [category, setCategory] = useState("/products")
   const [productID, setProductID] = useState("")
   const [product, setProduct] = useState({})
   const [loading, setLoading] = useState(false)
+  const [filters, setFilters] = useState({ branch: '', district: '' }); // Updated filters state
 
   useEffect(() => {
-    setLoading(true)
-    const getCategories = async () => {
-      
-      let categoriesData
-      await axios("https://fakestoreapi.com/products/categories").then(
-        (res) =>
-          (categoriesData = res.data.map((item) =>
-            item.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase())
-          ))
-      )
-      setCategories(categoriesData)
-    }
-    getCategories()
-    setLoading(false)
-  }, [])
-
-  useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const getProductData = async () => {
-      
-      if (category && category.length > 0) {
-        await axios.get(
-          `https://fakestoreapi.com/products/category/${category}`
-        ).then((res) => {
-          setProductList(res.data)
-          setLoading(false)
-        })
-      } else {
-        await axios.get(`https://fakestoreapi.com/products`).then((res) => {
-          setProductList(res.data)
-          setCategory("")
-          setLoading(false)
-        })
+      try {
+        const response = await axios.get('http://localhost:5000/api/courses');
+        const filteredProducts = response.data.filter((product) => {
+          return (
+            (!filters.branch || product.branch === filters.branch) &&
+            (!filters.district || product.district === filters.district)
+          );
+        });
+        setProductList(filteredProducts);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
       }
-    }
-    getProductData()
-  }, [category])
-
+    };
+  
+    getProductData();
+  }, [category, filters]); // Ensure `filters` is properly updated
+    
   useEffect(() => {
     setLoading(true)
-    const getProductDetail = async () => {   
-      
-       productID && productID.length > 0 && await axios.get(`https://fakestoreapi.com/products/${productID}`).then(
+    const getProductDetail = async () => {
+      productID && productID.length > 0 && await axios.get(``).then(
         (res) => {
           setProduct(res.data)
           setLoading(false)
@@ -71,6 +54,7 @@ export const ProductProvider = ({ children }) => {
     setProductID,
     categories,
     setCategory,
+    setFilters, // Provide the ability to set filters
     loading,
   }
 

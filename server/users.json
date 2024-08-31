@@ -1,0 +1,57 @@
+[
+  {
+    "id": "1",
+    "name": "Tripathi",
+    "email": "tripathi@hmail.com",
+    "course": "Btech",
+    "password": "pw123",
+    "type": "student"
+  },
+  {
+    "id": "2",
+    "name": "Wadekar",
+    "email": "wadekar@hmail.com",
+    "course": "Btech",
+    "password": "pw123",
+    "type": "student"
+  },
+  {
+    "id": "3",
+    "name": "deshpande",
+    "email": "deshpande@hmail.com",
+    "college": "MIT",
+    "password": "pw123",
+    "type": "college"
+  },
+  {
+    "id": "4",
+    "name": "nawale",
+    "email": "nawale@hmail.com",
+    "college": "VIT",
+    "password": "pw123",
+    "type": "college"
+  },
+  {
+    "id": "0",
+    "name": "admin",
+    "email": "admin@vm.com",
+    "password": "pw123",
+    "type": "admin"
+  },
+  {
+    "email": "siddharthd328@gmail.com",
+    "password": "Vikend1bet@",
+    "loginType": "student"
+  },
+  {
+    "email": "siddharthd328@gmail.com",
+    "password": "Vikend1bet@",
+    "loginType": "student"
+  },
+  {
+    "email": "voldemort@gmail.com",
+    "password": "Vikend1bet@",
+    "loginType": "student"
+  }
+  
+]

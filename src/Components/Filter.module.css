@@ -1,0 +1,64 @@
+/* Filter.module.css */
+
+  /* Filter.module.css */
+
+.filterContainer {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  max-width: 400px; /* Limit width on larger screens */
+  margin: 0 auto; /* Center the filter container */
+}
+
+.filterGroup {
+  margin-bottom: 20px;
+}
+
+.filterGroup label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.filterGroup select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Responsive design */
+@media (min-width: 576px) {
+  .filterContainer {
+    max-width: 500px; /* Increase max-width on larger screens */
+  }
+}
+
+@media (min-width: 768px) {
+  .filterContainer {
+    max-width: 600px; /* Increase max-width on even larger screens */
+  }
+}
+
+@media (min-width: 992px) {
+  .filterContainer {
+    max-width: 800px; /* Increase max-width on desktops */
+  }
+}
+
+  label {
+    margin-bottom: 5px; /* Adds a little space between the label and the select box */
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    min-width: 200px; /* Ensures the select boxes are wide enough */
+  }
