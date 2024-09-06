@@ -2,10 +2,12 @@ import React from 'react';
 import { ShoppingCartIcon, TrashIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
 import { useCart } from "../../Context/CartContext";
+import { useUser } from './UserContext'; // Import the hook
 import styles from "./styles.module.css";
 
 const Cart = ({ onPurchaseComplete }) => {
   const { items, removeFromCart } = useCart();
+  const { user } = useUser();  // Get user info from context
 
   const subtotal = items.reduce((acc, obj) => acc + obj.cost, 0).toFixed(2);
   const platformFee = 50;
@@ -13,7 +15,7 @@ const Cart = ({ onPurchaseComplete }) => {
   const gst = (gstRate * subtotal).toFixed(2);
   const total = (parseFloat(subtotal) + platformFee + parseFloat(gst)).toFixed(2);
 
-  const handleBuyNow = () => {
+  const handleBuyNow = async () => {
     const numItems = items.length;
     const invtotal = parseFloat(total);
     let invoice;
@@ -24,23 +26,39 @@ const Cart = ({ onPurchaseComplete }) => {
       invoice = `paid Rs ${invtotal} for this course and ${numItems - 1} others on XX/XX/XX`;
     }
 
-    console.log('Sending purchase data to server:', { invoice });
+    console.log('Sending purchase data to server:', { user, course: items[0], invoice });
 
-    fetch('http://localhost:5000/api/purchasesp', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ invoice }),
-    }).then(() => {
+    try {
+      const response = await fetch('http://localhost:5000/api/purchasesp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user, course: items[0], invoice }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
       alert('Purchase successful!');
+
+      // Empty the cart (remove all items)
       items.forEach(item => removeFromCart(item.id));
+
+      // Trigger the callback to update purchases in AdminDashboard
       console.log('Purchase complete, calling onPurchaseComplete...');
-      onPurchaseComplete(); // Trigger the callback to re-fetch purchases
-    }).catch(error => console.error('Error during purchase:', error));
-  };  return (
+      onPurchaseComplete();  // This triggers the re-fetch of purchases
+
+    } catch (error) {
+      console.error('Error during purchase:', error);
+      alert('Error during purchase. Please try again.');
+    }
+  };
+
+  return (
     <div>
-      {items.length < 1 && (
+      {items.length < 1 ? (
         <div className="flex flex-wrap max-w-7xl mx-auto my-4">
           <div className="w-full sm:w-2/2 md:w-2/2 xl:w-5/5 p-4 h-[500px] my-auto">
             <div className={styles.cardBg}>
@@ -65,9 +83,7 @@ const Cart = ({ onPurchaseComplete }) => {
             </div>
           </div>
         </div>
-      )}
-
-      {items.length > 0 && (
+      ) : (
         <div className="flex flex-wrap max-w-7xl mx-auto my-4">
           <div className="flex flex-col flex-1">
             {items.map((item) => (

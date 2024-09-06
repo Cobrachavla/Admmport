@@ -4,6 +4,7 @@ import './app3.css';
 import CourseList from './CourseList';
 import UserInfo from './purchased-admin';
 
+
 const AdminDashboard = () => {
   const [user, setUser] = useState({ 'id': '', 'name': '', 'email': '', 'password': '', 'type': '' });
   const [purchases, setPurchases] = useState([]);
@@ -16,7 +17,7 @@ const AdminDashboard = () => {
       }
       const data = await response.json();
       console.log('Fetched purchases:', data);
-      setPurchases(data);
+      setPurchases(data);  // This should update the state with new purchases
     } catch (error) {
       console.error('Error fetching purchases:', error);
     }
@@ -40,9 +41,9 @@ const AdminDashboard = () => {
     fetchPurchases();
   }, []);
 
-  const handlePurchaseComplete = () => {
+  const handlePurchaseComplete = async () => {
     console.log('Purchase complete. Fetching purchases...');
-    fetchPurchases();  // Re-fetch purchases after successful purchase
+    await fetchPurchases();  // Re-fetch purchases after successful purchase
   };
 
   if (!user) {
@@ -60,6 +61,7 @@ const AdminDashboard = () => {
         </div>
         <div className="right-column">
           <CourseList status='verified' />
+          
         </div>
       </div>
     </div>

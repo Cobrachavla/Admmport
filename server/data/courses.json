@@ -147,7 +147,7 @@
     "district": "District B",
     "description": "Description15",
     "cost": 1200,
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": 16,
@@ -157,7 +157,7 @@
     "district": "District C",
     "description": "Description16",
     "cost": 1200,
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": 17,
@@ -167,7 +167,7 @@
     "district": "District D",
     "description": "Description17",
     "cost": 1200,
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": 18,
@@ -177,7 +177,7 @@
     "district": "District E",
     "description": "Description18",
     "cost": 1200,
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "title": "Btech",
@@ -234,7 +234,7 @@
     "branch": "chemical",
     "district": "mumbai",
     "cost": "1234",
-    "status": "verified",
+    "status": "unverified",
     "id": 24
   },
   {

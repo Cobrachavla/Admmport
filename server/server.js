@@ -68,7 +68,7 @@ app.get('/api/filters', (req, res) => {
 });
 
 app.get('/api/courses', (req, res) => {
-  const courses = JSON.parse(fs.readFileSync('./data/courses2.json'));
+  const courses = JSON.parse(fs.readFileSync('./data/courses.json'));
   const { degree, branch, district } = req.query;
   //console.log(degree);
   let filteredCourses = courses.filter(course => course.status === 'verified');;
@@ -168,22 +168,44 @@ app.delete('/api/cart', (req, res) => {
 });
 
 app.post('/api/purchasesp', (req, res) => {
-  const { invoice } = req.body;
-  const user = JSON.parse(fs.readFileSync('./data/user.json', 'utf-8'));
-  let boughtCourses  = JSON.parse(fs.readFileSync('./data/boughtCourses.json', 'utf-8'));
-  cart.forEach(item => {
-  	//boughtCourses.forEach(bought => {
-  		//if bought.course.isin(cart)
-  	//});
-	const row = {'user': user, 'course': item, 'invoice': invoice};
-	boughtCourses.push(row);
-	fs.writeFileSync('./data/boughtCourses.json', JSON.stringify(boughtCourses, null, 2), 'utf-8');
-	//console.log(row);
+  const { user, course, invoice } = req.body;
+
+  if (!user || !course || !invoice) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  // Path to the JSON file
+  const filePath = path.join(__dirname, 'data', 'boughtCourses.json');
+
+  // Read existing data
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: 'Error reading file' });
+    }
+
+    let boughtCourses = [];
+    if (data) {
+      boughtCourses = JSON.parse(data);
+    }
+
+    // Create a new purchase entry
+    const newPurchase = {
+      user,
+      course,
+      invoice,
+    };
+
+    // Add new purchase to the list
+    boughtCourses.push(newPurchase);
+
+    // Write updated data to file
+    fs.writeFile(filePath, JSON.stringify(boughtCourses, null, 2), (err) => {
+      if (err) {
+        return res.status(500).json({ error: 'Error writing file' });
+      }
+      res.status(200).json({ message: 'Purchase recorded successfully' });
+    });
   });
-  while(cart.length > 0) {
-    cart.pop();
-   }
-  res.status(200);
 });
 
 
@@ -243,7 +265,3 @@ app.get('/api/purchases-admin', (req, res) => {
   res.status(200).json(boughtCourses);
 });
 
-// Endpoint to get course status categories
-app.get('/api/status-categories', (req, res) => {
-  res.status(200).json(["verified", "unverified"]);
-});
