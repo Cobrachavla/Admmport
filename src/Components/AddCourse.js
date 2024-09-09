@@ -23,28 +23,43 @@ const AddCourse = () => {
     });
   };
 
-  // Handler to submit the form data
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch('http://localhost:5000/api/add-course', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    setFormData({
-      title: '',
-      description: '',
-      branch: '',
-      district: '',
-      cost: ''
-    });
-    setShowForm(false);
-    alert("course posted for verification");
+  
+    // Convert cost to a number
+    const dataToSubmit = {
+      ...formData,
+      cost: parseFloat(formData.cost),  // Convert cost to a number
+    };
+  
+    try {
+      const response = await fetch('http://localhost:5000/api/add-course', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSubmit),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      setFormData({
+        title: '',
+        description: '',
+        branch: '',
+        district: '',
+        cost: ''
+      });
+      setShowForm(false);
+      alert("Course posted for verification");
+    } catch (error) {
+      console.error('Error adding course:', error);
+      alert('Error adding course. Please try again.');
+    }
   };
-
+  
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       {!showForm ? (

@@ -9,11 +9,16 @@ const Cart = ({ onPurchaseComplete }) => {
   const { items, removeFromCart } = useCart();
   const { user } = useUser();  // Get user info from context
 
-  const subtotal = items.reduce((acc, obj) => acc + obj.cost, 0).toFixed(2);
+  // Calculate subtotal, ensure it is a number
+  const subtotal = items.reduce((acc, obj) => acc + (parseFloat(obj.cost) || 0), 0);
+  
+  // Ensure subtotal is a number
+  const formattedSubtotal = subtotal.toFixed(2);
+  
   const platformFee = 50;
   const gstRate = 0.12;
   const gst = (gstRate * subtotal).toFixed(2);
-  const total = (parseFloat(subtotal) + platformFee + parseFloat(gst)).toFixed(2);
+  const total = (parseFloat(formattedSubtotal) + platformFee + parseFloat(gst)).toFixed(2);
 
   const handleBuyNow = async () => {
     const numItems = items.length;
@@ -135,7 +140,7 @@ const Cart = ({ onPurchaseComplete }) => {
                   Order Summary
                 </span>
                 <span className="text-sm my-2 font-extralight flex">
-                  Subtotal <span className="ml-auto font-normal">Rs {subtotal}</span>
+                  Subtotal <span className="ml-auto font-normal">Rs {formattedSubtotal}</span>
                 </span>
                 <span className="text-sm my-2 font-extralight flex">
                   Platform Fee <span className="ml-auto font-normal">Rs {platformFee}</span>
